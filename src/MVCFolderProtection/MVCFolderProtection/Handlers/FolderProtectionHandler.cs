@@ -31,6 +31,10 @@ namespace MVCFolderProtection.Handlers
                     }
                     context.Response.OutputStream.Flush();
                 }
+                else
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                }
             }
             context.Response.End();
         }
