@@ -10,11 +10,7 @@ namespace MVCFolderProtection.Handlers
 
         public void ProcessRequest(HttpContext context)
         {
-            if (!context.User.Identity.IsAuthenticated)
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            }
-            else
+            if (context.User.Identity.IsAuthenticated)
             {
                 var filePath = context.Server.MapPath(context.Request.RawUrl);
                 if (File.Exists(filePath))
@@ -35,6 +31,10 @@ namespace MVCFolderProtection.Handlers
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 }
+            }
+            else
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
             }
             context.Response.End();
         }
