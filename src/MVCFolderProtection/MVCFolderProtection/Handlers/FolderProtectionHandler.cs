@@ -16,7 +16,6 @@ namespace MVCFolderProtection.Handlers
                 if (File.Exists(filePath))
                 {
                     var stream = File.OpenRead(filePath);
-                    // stream the data from the file to  the response
                     int b;
                     context.Response.Clear();
                     context.Response.ClearHeaders();
